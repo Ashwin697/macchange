@@ -10,7 +10,7 @@ change () {
  oldvend=$(cat vendorlist.txt | ip addr show eno1 | grep ether | awk -F" " '{print $2}' | awk -F":" '{print $1":"$2":"$3}')
  oldvendor=$(cat vendorlist.txt | grep $oldvend | awk '{print $5}')
  newvendor=$(cat vendorlist.txt | grep $vendor | awk '{print $5}')
- oldmac=$(ip addr show eno1 | grep ether | awk -F" " '{print $2}')
+ oldmac=$(ip addr show $1 | grep ether | awk -F" " '{print $2}')
  echo "status  mac                vendors"
  echo "----------------------------------------"
  echo "oldaddr $oldmac  $oldvendor"
