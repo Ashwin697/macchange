@@ -7,7 +7,7 @@ change () {
  vendor=$(shuf -n 1 vendorlist.txt | awk '{print$3}')
  macgen=$(printf '%02x:%02x:%02x' $[RANDOM%256] $[RANDOM%256] $[RANDOM%256])
  newmac="$vendor:$macgen"
- oldvend=$(cat vendorlist.txt | ip addr show eno1 | grep ether | awk -F" " '{print $2}' | awk -F":" '{print $1":"$2":"$3}')
+ oldvend=$(cat vendorlist.txt | ip addr show $1 | grep ether | awk -F" " '{print $2}' | awk -F":" '{print $1":"$2":"$3}')
  oldvendor=$(cat vendorlist.txt | grep $oldvend | awk '{print $5}')
  newvendor=$(cat vendorlist.txt | grep $vendor | awk '{print $5}')
  oldmac=$(ip addr show $1 | grep ether | awk -F" " '{print $2}')
