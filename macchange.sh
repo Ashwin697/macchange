@@ -27,7 +27,17 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-if [ -f "$file" ]; then
+
+
+if [ -z $1  ];then
+
+ echo "device not found"
+ echo "Usage:"
+ echo "-- ./macchange.sh <interface>"
+
+
+
+elif [ -f "$file" ]; then
  change $1
 
 
@@ -37,12 +47,6 @@ elif [ ! -f "$file"  ]; then
  wget https://raw.githubusercontent.com/Ashwin697/macchange/main/vendorlist.txt
  change $1
 
-
-else
-
- echo "device not found"
- echo "Usage:"
- echo "-- ./macchange.sh <interface>"
 
 
 
