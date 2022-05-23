@@ -22,6 +22,11 @@ change () {
 
 }
 
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 if [ -f "$file" ]; then
  change $1
 
@@ -38,5 +43,7 @@ else
  echo "device not found"
  echo "Usage:"
  echo "-- ./macchange.sh <interface>"
+
+
 
 fi
