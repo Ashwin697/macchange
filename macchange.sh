@@ -25,13 +25,12 @@ change () {
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
    exit 1
-fi
 
 
 
-if [ -z $1  ];then
+elif [ -z $1  ] || [ "$1" != "$(ip -o link show | awk -F': ' '{print $2}' | grep $1)" ] ;then
 
- echo "device not found"
+ echo "device $1 not found"
  echo "Usage:"
  echo "-- ./macchange.sh <interface>"
 
