@@ -1,6 +1,5 @@
 #!/bin/bash
 
-mkdir -p /var/macchange/
 syml=/usr/bin/macchange
 file=/var/macchange/vendorlist.txt
 
@@ -36,12 +35,10 @@ else
 fi	
 }
 
-symlink
 
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
    exit 1
-
 
 
 elif [ -z $1  ] || [ "$1" != "$(ip -o link show | awk -F': ' '{print $2}' | grep $1)" ] ;then
@@ -53,12 +50,16 @@ elif [ -z $1  ] || [ "$1" != "$(ip -o link show | awk -F': ' '{print $2}' | grep
 
 elif [ ! -f "$file"  ]; then
  echo "file not found downloading it from repo :- https://github.com/Ashwin697/macchange "
+ mkdir -p /var/macchange/
  wget -O /var/macchange/vendorlist.txt https://raw.githubusercontent.com/Ashwin697/macchange/main/vendorlist.txt
+ symlink
  change $1
 
 
 
 elif [ -f "$file" ]; then
+ mkdir -p /var/macchange/
+ symlink
  change $1
 
 
