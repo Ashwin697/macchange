@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p /var/macchange
+mkdir -p /var/macchange/
 syml=/usr/bin/macchange
 file=/var/macchange/vendorlist.txt
 
@@ -51,16 +51,17 @@ elif [ -z $1  ] || [ "$1" != "$(ip -o link show | awk -F': ' '{print $2}' | grep
  echo "-- ./macchange.sh <interface>"
 
 
+elif [ ! -f "$file"  ]; then
+ echo "file not found downloading it from repo :- https://github.com/Ashwin697/macchange "
+ wget -O /var/macchange/vendorlist.txt https://raw.githubusercontent.com/Ashwin697/macchange/main/vendorlist.txt
+ change $1
+
+
 
 elif [ -f "$file" ]; then
  change $1
 
 
-
-elif [ ! -f "$file"  ]; then
- echo "file not found downloading it from repo :- https://github.com/Ashwin697/macchange "
- wget -O /var/macchange/vendorlist.txt https://raw.githubusercontent.com/Ashwin697/macchange/main/vendorlist.txt
- change $1
 
 
 
