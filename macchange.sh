@@ -28,9 +28,11 @@ symlink () {
 
 dir=$(pwd)
 if [ -e $syml ]; then
+	echo ""
 	
 else
 	s=`ln -s $dir/macchange.sh /usr/bin/macchange`
+	echo "symlink created now type macchange anywhere on terminal it will work"
 fi	
 }
 
